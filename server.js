@@ -33,23 +33,22 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const indexRouter = require("./routes/index");
+const loginRouter = require("./routes/login");
+const registerRouter = require("./routes/register");
+const adminRouter = require("./routes/admin");
+const resultRouter  = require("./routes/result");
+const surveyRouter  = require("./routes/survey");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above
-
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", indexRouter(db));
+app.use("/login", loginRouter(db));
+app.use("/register", registerRouter(db));
+app.use("/admin/:id", adminRouter(db));
+app.use("/result/:id", resultRouter(db));
+app.use("/survey:id", surveyRouter(db));
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`decision-maker2 listening on port ${PORT}`);
 });
