@@ -33,16 +33,21 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const createIndex = require("./routes/create");
-const surveyIndex = require("./routes/survey");
-const answerIndex = require("./routes/answer");
+const indexRouter = require("./routes/index");
+const loginRouter = require("./routes/login");
+const registerRouter = require("./routes/register");
+const adminRouter = require("./routes/admin");
+const resultRouter  = require("./routes/result");
+const surveyRouter  = require("./routes/survey");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/", createIndex(db));
-app.use("/a", surveyIndex(db));
-app.use("/b", answerIndex(db));
-
+app.use("/", indexRouter(db));
+app.use("/login", loginRouter(db));
+app.use("/register", registerRouter(db));
+app.use("/admin/:id", adminRouter(db));
+app.use("/result/:id", resultRouter(db));
+app.use("/survey:id", surveyRouter(db));
 
 app.listen(PORT, () => {
   console.log(`decision-maker2 listening on port ${PORT}`);
