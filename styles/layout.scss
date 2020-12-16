@@ -41,7 +41,7 @@ body {
   main {
     margin: 8em 2em 0;
 
-    display:flex;
+    display: flex;
     justify-content: center;
 
     .adjust-center {
@@ -57,15 +57,12 @@ body {
           height: 5em;
         }
       }
+      .buttons-margin-down {
+        margin-bottom: 10em;
+      }
     }
   }
 }
-
-// #txtAreaQuestion {
-//   width: 10em;
-//   height: 10em;
-
-// }
 
 // Colorhunt:
 // 92817a
