@@ -2,6 +2,7 @@
 
 body {
   background-color: #92817a;
+  color: #bedbbb;
 
   h1 {
     color: #8db596;
@@ -37,16 +38,37 @@ body {
     padding: 1em;
   }
 
-  .margin-first-top {
-    margin-top: 3em;
-  }
+  main {
+    margin: 8em 2em 0;
 
+    display:flex;
+    justify-content: center;
+
+    .adjust-center {
+      .form-group-title {
+        textarea {
+          width: 50em;
+          height: 10em;
+        }
+      }
+      .form-group-answer {
+        textarea {
+          width: 50em;
+          height: 5em;
+        }
+      }
+    }
+  }
 }
 
+// #txtAreaQuestion {
+//   width: 10em;
+//   height: 10em;
+
+// }
 
 // Colorhunt:
 // 92817a
 // bedbbb
 // 8db596
 // 707070
-
