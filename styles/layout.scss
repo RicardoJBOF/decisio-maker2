@@ -1,9 +1,41 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: #92817a;
 
   h1 {
-    color: #244751;
+    color: #8db596;
   }
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #707070;
+    height: 6em;
+    padding: 2em;
+
+    .right-side-navbar {
+      padding: 2em;
+      width: 25em;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .margin-first-top {
+    margin-top: 3em;
+  }
+
 }
+
+
+// Colorhunt:
+// 92817a
+// bedbbb
+// 8db596
+// 707070
+
