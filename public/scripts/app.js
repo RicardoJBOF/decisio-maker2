@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
   let last_text = 3;
-  let present_letter = 'C'
+  let present_letter = 'C';
+  const data = {};
+  let id = 0;
 
   //ADD AND REMOVE OPTIONS BUTTON (INDEX.HTML)
   function nextChar(c) {
@@ -16,7 +18,7 @@ $(document).ready(function () {
     let field = $(`
     <div class="form-group form-group-answer" id="txtAreaanswer${last_text}">
     <p>${present_letter})</p>
-      <textarea class="form-control" ></textarea>
+      <textarea class="form-control" id="txtOption${last_text}"></textarea>
     </div>
     `);
     present_letter = nextChar(present_letter);
@@ -28,7 +30,7 @@ $(document).ready(function () {
     $('#new-field').append(createField());
   };
 
-  $("#addMoreAnswers").click(function () {
+  $("#addMoreAnswers").click( () => {
     renderNewField();
   });
 
@@ -40,9 +42,35 @@ $(document).ready(function () {
     }
   };
 
-  $("#RemoveAnswers").click(function () {
+  $("#RemoveAnswers").click( () => {
     removeField();
   });
+
+  //SEND POLL BUTTON
+  const collectAnswers = () => {
+    const options = [];
+    for (let i = 1; i < last_text; i++) {
+      options.push($(`#txtOption${i}`).val())
+    }
+    return options;
+  };
+
+  $("#sendAnswers").click( function () {
+    data.question = $(`#txtAreaQuestion`).val();
+    data.answers = collectAnswers();
+    console.log("data.answers------>", data.answers)
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: '/',
+      data: data,
+      async:false
+    }).done((e) =>
+    {
+      id = e;
+      //renderBtn();
+    });
+  })
 
 
 
