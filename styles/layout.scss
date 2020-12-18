@@ -1,9 +1,71 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: #92817a;
+  color: #bedbbb;
 
   h1 {
-    color: #244751;
+    color: #8db596;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #707070;
+    height: 6em;
+    padding: 2em;
+
+    .right-side-navbar {
+      padding: 2em;
+      width: 25em;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #707070;
+    color: #8db596;
+    text-align: center;
+    padding: 1em;
+  }
+
+  main {
+    margin: 8em 2em 0;
+
+    display: flex;
+    justify-content: center;
+
+    .adjust-center {
+      .form-group-title {
+        textarea {
+          width: 50em;
+          height: 10em;
+        }
+      }
+      .form-group-answer {
+        textarea {
+          width: 50em;
+          height: 5em;
+        }
+      }
+      .buttons-margin-down {
+        margin-bottom: 10em;
+      }
+    }
   }
 }
+
+// Colorhunt:
+// 92817a
+// bedbbb
+// 8db596
+// 707070
