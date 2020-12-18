@@ -15,7 +15,7 @@ $(document).ready(function () {
   }
 
   const createField = () => {
-    let field = $(`
+    const field = $(`
     <div class="form-group form-group-answer" id="txtAreaanswer${last_text}">
     <p>${present_letter})</p>
       <textarea class="form-control" id="txtOption${last_text}"></textarea>
@@ -65,12 +65,22 @@ $(document).ready(function () {
       url: '/',
       data: data,
       async:false
-    }).done((response) =>
-    {
-      id = response.id;
-      //renderBtn();
+    }).done((id) => {
+      id = id.response;
+      const field = $(`
+      <hr>
+      <p>Submission link:</p> <a href="urls/${id}"> http://localhost:8080/urls/${id}</a>
+      <p>Share this link with the voters.</p>
+      <hr>
+      <p>Result link:</p> <a href="urls/result/${id}"> http://localhost:8080/urls/result/${id}</a>
+      <p>Use this link to track the result.</p>
+      <hr>
+      `);
+      $('#create-links').append(field);
     });
   })
+
+
 
 
 
