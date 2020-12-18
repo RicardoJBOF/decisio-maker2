@@ -37,8 +37,6 @@ const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const adminRouter = require("./routes/admin");
 const resultRouter  = require("./routes/result");
-
-//MANDANDO A ROUTE PARA O DIRETORIA A PARTE
 const surveyRouter  = require("./routes/survey");
 
 
@@ -47,16 +45,11 @@ app.use("/login", loginRouter(db));
 app.use("/register", registerRouter(db));
 app.use("/admin/:id", adminRouter(db));
 app.use("/result/:id", resultRouter(db));
+app.use("/survey", surveyRouter(db));
 
-//MANDANDO A ROUTE PARA O DIRETORIA A PARTE
-app.use("survey", surveyRouter(db));
-
-
-//SE DESCOMENTAR, A PAGINA VAI RENDERIZAR
-// app.get("/survey", (req, res) => {
-//   res.render("survey");
-// });
 
 app.listen(PORT, () => {
   console.log(`decision-maker2 listening on port ${PORT}`);
 });
+
+
