@@ -79,15 +79,4 @@ $(document).ready(function () {
       $('#create-links').append(field);
     });
   })
-
-
-
-
-
-
-
-
-
-
-
 });
