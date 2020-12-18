@@ -57,17 +57,17 @@ $(document).ready(function () {
 
   $("#sendAnswers").click( function () {
     data.question = $(`#txtAreaQuestion`).val();
-    data.answers = collectAnswers();
-    console.log("data.answers------>", data.answers)
+    data.options = collectAnswers();
     event.preventDefault();
+
     $.ajax({
       type: "POST",
       url: '/',
       data: data,
       async:false
-    }).done((e) =>
+    }).done((response) =>
     {
-      id = e;
+      id = response.id;
       //renderBtn();
     });
   })
