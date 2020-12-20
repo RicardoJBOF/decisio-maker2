@@ -1,41 +1,35 @@
 const express = require("express");
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
+  const accessQuestion = (user) => {
+    const id = parseInt(user.id);
+    const data = { id };
 
-  const accessQuestion = function(user) {
-    return new Promise(resolve => {
-      let pollId = parseInt(user.pollId);
-      let result = {};
-      result.poll = pollId;
-      db.query(`
-    SELECT id, name
-    FROM polls
-    WHERE id = ${pollId};
-    `, (err, res) => {
-        if (err) {
-          console.log(err);
+    const query = {
+      text: `SELECT polls.id, polls.name AS question, options.name AS options
+      FROM polls
+      INNER JOIN options ON polls.id = options.poll_id
+      WHERE polls.id = ${id};`,
+    };
+    return db
+      .query(query)
+      .then((res) => {
+        data.question = res.rows[0].question;
+        data.answers = [];
+        for (let i = 0; i < res.rows.length; i++) {
+          data.answers.push(res.rows[i].options);
         }
-        result.pollname = res.rows;
-        db.query(`
-      SELECT id, name
-      FROM options
-      WHERE poll_id = ${pollId};
-      `, (err, res) => {
-          if (err) {
-            console.log(err);
-          }
-          result.options = res.rows;
-          resolve(result);
-        });
-      });
-    });
+        return data;
+      })
+      .catch((err) => err);
   };
 
   router.get("/:id", (req, res) => {
     const user = req.params;
-
-    res.render("survey");
+    accessQuestion(user).then((data) => {
+      res.render("survey", data);
+    });
   });
 
   return router;
