@@ -29,10 +29,7 @@
 
         <h1 class="form-group form-group-title"> <%= question %> </h1>
 
-
-
         <form id="formSurvey" method="POST" action="/survey/<%= id %>">
-
 
           <input  type="hidden" name="question_name" value="<%= question %>">
           <% for(let answer in answers) { %>
@@ -43,11 +40,9 @@
             <br>
               <select class="select-class" name="select_name<%= id %>" id="select<%= id %>">
                 <% for(let i = 1; i <= answers.length; i++)  { %>
-                <option value="Option<%= i %>"> <%= i %> </option>
-
+                <option value="<%= i %>"> <%= i %> </option>
                 <% } %>
               </select>
-
             <br>
           </tr>
 
@@ -55,7 +50,6 @@
           <div class="buttons-margin-down">
             <button type="submit" class="btn btn-secondary btn-title" id="sendSurvey">Send Answers</button>
           </div>
-
 
         </form>
 
