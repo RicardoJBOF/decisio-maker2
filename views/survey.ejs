@@ -25,34 +25,47 @@
   <body>
     <%- include('partials/_header') %>
     <main>
-
       <div class="adjust-center">
 
         <h1 class="form-group form-group-title"> <%= question %> </h1>
 
-        <h1>Options:</h1>
 
-        <!-- <div class="form-group form-group-answer" id="txtAreaanswer1">
-          <p>A)</p> <textarea class="form-control" id="txtOption1"></textarea>
-        </div>
-        <div class="form-group form-group-answer" id="txtAreaanswer2">
-          <p>B)</p> <textarea class="form-control" id="txtOption2"></textarea>
-        </div>
 
-        <div id="new-field"></div>
+        <form id="formSurvey" method="POST" action="/survey/<%= id %>">
 
-        <div class="buttons-margin-down">
-          <button type="button" id="addMoreAnswers" class="btn btn-secondary btn-title">Add Option</button>
-          <button type="button" id="RemoveAnswers" class="btn btn-secondary btn-title">Remove Option</button>
-          <button type="submit" class="btn btn-secondary btn-title" id="sendAnswers">Send Poll</button>
-          <div id="create-links"></div>
-        </div> -->
 
+          <input  type="hidden" name="question_name" value="<%= question %>">
+          <% for(let answer in answers) { %>
+            <input type="hidden" name="<%= answer %>" value="<%= answers[answer] %>">
+          <tr>
+            <br>
+            <%= answers[answer] %>
+            <br>
+              <select class="select-class" name="select_name<%= id %>" id="select<%= id %>">
+                <% for(let i = 1; i <= answers.length; i++)  { %>
+                <option value="Option<%= i %>"> <%= i %> </option>
+
+                <% } %>
+              </select>
+
+            <br>
+          </tr>
+
+          <% } %>
+          <div class="buttons-margin-down">
+            <button type="submit" class="btn btn-secondary btn-title" id="sendSurvey">Send Answers</button>
+          </div>
+
+
+        </form>
+
+      </div>
     </main>
 
-    <%- include('partials/_header') %>
+    <%- include('partials/_footer') %>
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/survey_app.js"></script>
+
   </body>
 </html>
