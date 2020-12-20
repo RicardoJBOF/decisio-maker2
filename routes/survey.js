@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+
   const accessQuestion = (user) => {
     const id = parseInt(user.id);
     const data = { id };
@@ -49,7 +50,7 @@ module.exports = (db) => {
         ${info.join(',')}`
     )
       .then(resp => {
-        res.json("VOTED!");
+        res.render("voted");
       })
       .catch(err => {
         console.log(err);
