@@ -32,11 +32,11 @@
         <form id="formSurvey" method="POST" action="/survey/<%= id %>">
 
           <input  type="hidden" name="question_name" value="<%= question %>">
-          <% for(let answer in answers) { %>
-            <input type="hidden" name="<%= answer %>" value="<%= answers[answer] %>">
+          <% for(let i = 0; i < answers.length; i++) { %>
+            <input type="hidden" name="<%= i %>" value="<%= answersID[i] %>">
           <tr>
             <br>
-            <%= answers[answer] %>
+            <%= answers[i] %>
             <br>
               <select class="select-class" name="select_name<%= id %>" id="select<%= id %>">
                 <% for(let i = 1; i <= answers.length; i++)  { %>

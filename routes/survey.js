@@ -34,40 +34,27 @@ module.exports = (db) => {
     });
   });
 
-  // router.post("/:id", (req, res) => {
-  //   console.log(Object.keys(req.body));
+  router.post("/:id", (req, res) => {
 
+    const data = Object.values(req.body)
+    const info = [];
 
-  //   const rows = [];
+    for (let i = 0; i < data.length; i++) {
+      i <= data.length/2 ? info.push(`(${data[data.length - 1][i]}, ${data[i]}, null)`) : "";
+    }
 
-  //   Object.keys(req.body).forEach(key=> {
-  //     if (key.includes('select_name')) {
-  //       const num = key.split('select_name')[1];
-  //       console.log('num---->', num)
-  //       const weight = req.body[key];
-  //       console.log('weight---->', weight)
-  //       rows.push(`(${weight}, ${num}, ${null})`);
-  //       console.log(rows)
-  //       console.log(rows.join(','))
-  //     }
-  //   });
-
-  //   db.query(`
-  //     INSERT INTO option_voters (weight, option_id, voter_id)
-  //     VALUES
-  //       ${rows.join(',')}`
-  //   )
-  //     .then(resp => {
-  //       res.json("VOTED!");
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // });
-
-
-
-
+    db.query(`
+      INSERT INTO option_voters (weight, option_id, voter_id)
+      VALUES
+        ${info.join(',')}`
+    )
+      .then(resp => {
+        res.json("VOTED!");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 
   return router;
 };
