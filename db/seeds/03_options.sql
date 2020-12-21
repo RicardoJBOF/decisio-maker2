@@ -5,6 +5,8 @@ VALUES
   ('picnic', 1),
   ('beach', 1),
   ('restaurant', 1),
+  ('yes', 2),
+  ('no', 2),
   ('Casablanca', 4),
   ('Gone With the Wind', 4),
   ('Wizard of Oz', 4),
