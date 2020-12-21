@@ -26,7 +26,16 @@
     <%- include('partials/_header') %>
     <main>
 
-      <h1> Result </h1>
+      <div class="adjust-center">
+
+        <h1 class="form-group form-group-title"> <%= question %> </h1>
+        <h1 class="form-group form-group-title"> Final Result: </h1>
+
+        <% for(const answer in answers) { %>
+          <p class="styling-final-answer"><%= `${answer} - ${answers[answer]} points`%></p>
+        <% } %>
+
+      </div>
 
     </main>
 
