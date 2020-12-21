@@ -28,8 +28,8 @@ module.exports = (db) => {
   };
 
   router.get("/:id", (req, res) => {
-    const user = req.params;
-    accessQuestion(user).then((data) => {
+    const id = req.params;
+    accessQuestion(id).then((data) => {
       res.render("survey", data);
     });
   });
