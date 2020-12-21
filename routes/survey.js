@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-
   const accessQuestion = (user) => {
     const id = parseInt(user.id);
     const data = { id };
@@ -21,7 +20,7 @@ module.exports = (db) => {
         data.answersID = [];
         for (let i = 0; i < res.rows.length; i++) {
           data.answers.push(res.rows[i].options);
-          data.answersID.push(res.rows[i].optionsid)
+          data.answersID.push(res.rows[i].optionsid);
         }
         return data;
       })
@@ -36,27 +35,25 @@ module.exports = (db) => {
   });
 
   router.post("/:id", (req, res) => {
-
     const data = Object.values(req.body);
     const info = [];
 
-    for(let i = 0; i < data[data.length - 1].length; i++) {
-      info.push(`(${data[data.length - 1][i]}, ${data[i]}, null)`)
+    for (let i = 0; i < data[data.length - 1].length; i++) {
+      info.push(`(${data[data.length - 1][i]}, ${data[i]}, null)`);
     }
 
-    db.query(`
+    db.query(
+      `
       INSERT INTO option_voters (weight, option_id, voter_id)
       VALUES
-        ${info.join(',')}`
+        ${info.join(",")}`
     )
-      .then(resp => {
+      .then((resp) => {
         res.render("voted");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-
-
   });
 
   return router;
