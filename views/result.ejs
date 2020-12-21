@@ -32,8 +32,8 @@
         <p class="survey-comments container">
         The more points, the more popular the answer is.</p>
 
-        <% for(const answer in answers) { %>
-          <p class="styling-final-answer"><%= `${answer} - ${answers[answer]} points`%></p>
+        <% for(const answer of answers) { %>
+          <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
         <% } %>
 
       </div>

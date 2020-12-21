@@ -35,8 +35,12 @@ module.exports = (db) => {
         const minPoints = 1;
 
         for(const score in data.answers){
-          data.answers[score] = data.answers[score].map( x => maxPoints + minPoints - x).reduce( (a,b) => a + b, 0)
+          data.answers[score] = data.answers[score].map( x => maxPoints + minPoints - x).reduce( (a,b) => a + b, 0);
         }
+
+        data.answers = Object.entries(data.answers).sort( (a,b) => b[1] - a[1]);
+
+        console.log('data---->',data)
 
         return data;
       })
