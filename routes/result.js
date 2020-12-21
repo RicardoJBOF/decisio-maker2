@@ -19,25 +19,35 @@ module.exports = (db) => {
     return db
       .query(query)
       .then((res) => {
+
         data.question = res.rows[0].question;
-        data.answers = [];
-        data.answersID = [];
+        data.answers = {};
+
         for (let i = 0; i < res.rows.length; i++) {
-          data.answers.push(res.rows[i].options);
-          data.answersID.push(res.rows[i].optionsid);
+          if(data.answers[res.rows[i].questionid]) {
+            data.answers[res.rows[i].questionid].push(res.rows[i].weight);
+          } else {
+            data.answers[res.rows[i].questionid] = [res.rows[i].weight]
+          }
         }
+
+        const maxPoints = Object.entries(data.answers).length;
+        const minPoints = 1;
+
+        for(const score in data.answers){
+          data.answers[score] = data.answers[score].map( x => maxPoints + minPoints - x).reduce( (a,b) => a + b, 0)
+        }
+
         return data;
       })
       .catch((err) => err);
   };
 
-
-
   router.get("/:id", (req, res) => {
-    const user = req.params;
-    console.log(user);
-    res.render("result");
-
+    const id = req.params;
+    accessData(id).then( data => {
+      res.render("result", data)
+    });
   });
 
   return router;
