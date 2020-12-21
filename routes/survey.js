@@ -37,11 +37,11 @@ module.exports = (db) => {
 
   router.post("/:id", (req, res) => {
 
-    const data = Object.values(req.body)
+    const data = Object.values(req.body);
     const info = [];
 
-    for (let i = 0; i < data.length; i++) {
-      i <= data.length/2 ? info.push(`(${data[data.length - 1][i]}, ${data[i]}, null)`) : "";
+    for(let i = 0; i < data[data.length - 1].length; i++) {
+      info.push(`(${data[data.length - 1][i]}, ${data[i]}, null)`)
     }
 
     db.query(`
@@ -55,6 +55,8 @@ module.exports = (db) => {
       .catch(err => {
         console.log(err);
       });
+
+
   });
 
   return router;

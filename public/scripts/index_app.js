@@ -69,10 +69,10 @@ $(document).ready(function () {
       id = id.response;
       const field = $(`
       <hr>
-      <p>Submission link:</p> <a href="urls/${id}"> http://localhost:8080/urls/${id}</a>
+      <p>Submission link:</p> <a href="survey/${id}"> http://localhost:8080/survey/${id}</a>
       <p>Share this link with the voters.</p>
       <hr>
-      <p>Result link:</p> <a href="urls/result/${id}"> http://localhost:8080/urls/result/${id}</a>
+      <p>Result link:</p> <a href="result/${id}"> http://localhost:8080/result/${id}</a>
       <p>Use this link to track the result.</p>
       <hr>
       `);
