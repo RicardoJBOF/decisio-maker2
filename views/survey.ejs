@@ -29,6 +29,9 @@
 
         <h1 class="form-group form-group-title"> <%= question %> </h1>
 
+        <p class="survey-comments container"> The current survey will use the Borda Count approach. It is a preferential, or ranked, voting system. Order your preference giving 1 to your first choice, 2 for the second one and etc.</p>
+
+
         <form id="formSurvey" method="POST" action="/survey/<%= id %>">
 
           <input  type="hidden" name="question_name" value="<%= question %>">
@@ -47,7 +50,7 @@
           </tr>
 
           <% } %>
-          <div class="buttons-margin-down">
+          <div class="buttons-margin-down buttons-margin-top">
             <button type="submit" class="btn btn-secondary btn-title" id="sendSurvey">Send Answers</button>
           </div>
 
