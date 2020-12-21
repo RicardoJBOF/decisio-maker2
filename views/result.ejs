@@ -29,7 +29,8 @@
       <div class="adjust-center">
 
         <h1 class="form-group form-group-title"> <%= question %> </h1>
-        <h1 class="form-group form-group-title"> Final Result: </h1>
+        <p class="survey-comments container">
+        The more points, the more popular the answer is.</p>
 
         <% for(const answer in answers) { %>
           <p class="styling-final-answer"><%= `${answer} - ${answers[answer]} points`%></p>

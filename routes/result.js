@@ -24,10 +24,10 @@ module.exports = (db) => {
         data.answers = {};
 
         for (let i = 0; i < res.rows.length; i++) {
-          if(data.answers[res.rows[i].questionid]) {
-            data.answers[res.rows[i].questionid].push(res.rows[i].weight);
+          if(data.answers[res.rows[i].option]) {
+            data.answers[res.rows[i].option].push(res.rows[i].weight);
           } else {
-            data.answers[res.rows[i].questionid] = [res.rows[i].weight]
+            data.answers[res.rows[i].option] = [res.rows[i].weight]
           }
         }
 
