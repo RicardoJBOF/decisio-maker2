@@ -33,7 +33,7 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const data = req.body;
     getUserByEmail(data.email).then( user => {
-      !user ? registerUser(data).then(user => res.send(user)) : res.send({answer: false});
+      !user ? registerUser(data).then(user => res.send(user)) : res.send();
     })
   });
 
