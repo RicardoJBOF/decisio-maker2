@@ -26,13 +26,31 @@
     <%- include('partials/_header') %>
     <main>
 
-      <h1> Result </h1>
+      <div class="adjust-center">
+
+        <% if(data.answers) { %>
+
+          <h1 class="form-group form-group-title"> <%= data.question %> </h1>
+          <p class="survey-comments container">
+          The more points, the more popular the answer is.</p>
+
+          <% for(const answer of data.answers) { %>
+            <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
+          <% } %>
+
+        <% } else { %>
+
+          <h1 class="form-group form-group-title"> This survey does not exist, or no one has voted yet.  </h1>
+
+        <% } %>
+
+      </div>
 
     </main>
 
     <%- include('partials/_header') %>
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/result_app.js"></script>
   </body>
 </html>

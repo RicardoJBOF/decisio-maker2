@@ -27,34 +27,44 @@
     <main>
       <div class="adjust-center">
 
-        <h1 class="form-group form-group-title"> <%= question %> </h1>
+        <% if(data.answers) { %>
 
-        <p class="survey-comments container"> The current survey will use the Borda Count approach. It is a preferential, or ranked, voting system. Order your preference giving 1 to your first choice, 2 for the second one and etc.</p>
+          <h1 class="form-group form-group-title"> <%= data.question %> </h1>
+
+          <p class="survey-comments container"> The current survey will use the Borda Count approach. It is a preferential, or ranked, voting system. Order your preference giving 1 to your first choice, 2 for the second one and etc.</p>
 
 
-        <form id="formSurvey" method="POST" action="/survey/<%= id %>">
+          <form id="formSurvey" method="POST" action="/survey/<%= data.id %>">
 
-          <input  type="hidden" name="question_name" value="<%= question %>">
-          <% for(let i = 0; i < answers.length; i++) { %>
-            <input type="hidden" name="<%= i %>" value="<%= answersID[i] %>">
-          <tr>
-            <br>
-            <%= answers[i] %>
-            <br>
-              <select class="select-class" name="select_name<%= id %>" id="select<%= id %>">
-                <% for(let i = 1; i <= answers.length; i++)  { %>
-                <option value="<%= i %>"> <%= i %> </option>
-                <% } %>
-              </select>
-            <br>
-          </tr>
+            <input  type="hidden" name="question_name" value="<%= data.question %>">
+            <% for(let i = 0; i < data.answers.length; i++) { %>
+              <input type="hidden" name="<%= i %>" value="<%= data.answersID[i] %>">
+            <tr>
+              <br>
+              <%= data.answers[i] %>
+              <br>
+                <select class="select-class" name="select_name<%= data.id %>" id="select<%= data.id %>">
+                  <% for(let i = 1; i <= data.answers.length; i++)  { %>
+                  <option value="<%= i %>"> <%= i %> </option>
+                  <% } %>
+                </select>
+              <br>
+            </tr>
 
-          <% } %>
-          <div class="buttons-margin-down buttons-margin-top">
-            <button type="submit" class="btn btn-secondary btn-title" id="sendSurvey">Send Answers</button>
-          </div>
+            <% } %>
+            <div class="buttons-margin-down buttons-margin-top">
+              <button type="submit" class="btn btn-secondary btn-title" id="sendSurvey">Send Answers</button>
+            </div>
 
-        </form>
+          </form>
+
+        <% } else { %>
+
+          <h1 class="form-group form-group-title"> This survey does not exist.  </h1>
+
+        <% } %>
+
+
 
       </div>
     </main>
