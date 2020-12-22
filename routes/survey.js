@@ -30,7 +30,10 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const id = req.params;
     accessQuestion(id).then((data) => {
-      res.render("survey", data);
+      const templateVars = {
+        data
+      }
+      res.render("survey", templateVars);
     });
   });
 

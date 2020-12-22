@@ -28,12 +28,20 @@
 
       <div class="adjust-center">
 
-        <h1 class="form-group form-group-title"> <%= question %> </h1>
-        <p class="survey-comments container">
-        The more points, the more popular the answer is.</p>
+        <% if(data.answers) { %>
 
-        <% for(const answer of answers) { %>
-          <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
+          <h1 class="form-group form-group-title"> <%= data.question %> </h1>
+          <p class="survey-comments container">
+          The more points, the more popular the answer is.</p>
+
+          <% for(const answer of data.answers) { %>
+            <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
+          <% } %>
+
+        <% } else { %>
+
+          <h1 class="form-group form-group-title"> This survey does not exist, or no one has voted yet.  </h1>
+
         <% } %>
 
       </div>

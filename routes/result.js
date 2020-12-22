@@ -40,8 +40,6 @@ module.exports = (db) => {
 
         data.answers = Object.entries(data.answers).sort( (a,b) => b[1] - a[1]);
 
-        console.log('data---->',data)
-
         return data;
       })
       .catch((err) => err);
@@ -50,7 +48,10 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const id = req.params;
     accessData(id).then( data => {
-      res.render("result", data)
+      const templateVars = {
+        data
+      };
+      res.render("result", templateVars);
     });
   });
 
