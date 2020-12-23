@@ -35,10 +35,11 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const data = req.body;
+
     getUserByEmail(data.email).then((user) => {
       !user
         ? registerUser(data).then((user) => {
-            res.redirect("../");
+            res.send({ redirect: "/" });
           })
         : res.send();
     });
