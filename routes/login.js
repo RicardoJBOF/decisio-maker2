@@ -24,12 +24,7 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const data = req.body;
 
-    console.log('recebendo data no backend--->', data)
-
     getUserByEmail(data.email).then((user) => {
-
-      console.log("printar dados encontrados para o user:", user)
-
       if (!user) {
         res.send({ noRegister: 'noRegister' })
       } else {
@@ -38,7 +33,6 @@ module.exports = (db) => {
         } else {
           const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
           res.json({ token, user })
-          //res.send({ redirect: "/" })
         }
       }
     });

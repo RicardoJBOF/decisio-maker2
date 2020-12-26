@@ -9,8 +9,6 @@ $(document).ready(function () {
     data.password = $(`#login-password`).val();
     event.preventDefault();
 
-    console.log('Enviando data para meu backend--->', data)
-
     $.ajax({
       type: "POST",
       url: "/login",
@@ -18,22 +16,18 @@ $(document).ready(function () {
       async: false,
     }).done(
       res => {
+        console.log('retorno para o front-end--->', res)
 
-      console.log('retorno para o front-end--->', res)
+        if(res.token) {
+          localStorage.setItem("token", res.token);
+          localStorage.setItem("user", res.user);
+          window.location = "/";
 
-      if(res.redirect) {
-        //setToken(res.token);
-        window.location = res.redirect
-
-      } else if (res.noRegister) {
-        $("#invalid-email").show()
-      } else if (res.wrongPassword) {
-        $("#wrong-password").show()
-      }
-
-
+        } else if (res.noRegister) {
+          $("#invalid-email").show()
+        } else if (res.wrongPassword) {
+          $("#wrong-password").show()
+        }
       })
-
   });
-
 });
