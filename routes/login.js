@@ -1,18 +1,48 @@
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
 module.exports = (db) => {
-  // router.get("/", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then(data => {
-  //       const users = data.rows;
-  //       res.json({ users });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
+  router.get("/", (req, res) => {
+    res.render("login");
+  });
+
+  const getUserByEmail = (email) => {
+    const query = {
+      text: `SELECT *
+      FROM creators
+      WHERE email = ($1);`,
+      values: [email],
+    };
+    return db
+      .query(query)
+      .then((res) => res.rows[0])
+      .then((err) => err);
+  };
+
+  router.post("/", (req, res) => {
+    const data = req.body;
+
+    console.log('recebendo data no backend--->', data)
+
+    getUserByEmail(data.email).then((user) => {
+
+      console.log("printar dados encontrados para o user:", user)
+
+      if (!user) {
+        res.send({ noRegister: 'noRegister' })
+      } else {
+        if (!bcrypt.compareSync(data.password, user.password)) {
+          res.send({ wrongPassword: 'wrongPassword' })
+        } else {
+          const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+          res.json({ token, user })
+          //res.send({ redirect: "/" })
+        }
+      }
+    });
+  });
+
   return router;
 };
