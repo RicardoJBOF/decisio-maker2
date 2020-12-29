@@ -15,9 +15,10 @@ $(document).ready(function () {
       async: false,
     }).done((res) => {
       if (res.token) {
-        localStorage.setItem("token", res.token);
-        localStorage.setItem("user", res.user);
+        sessionStorage.setItem("token", res.token);
+        sessionStorage.setItem("user", res.user);
         window.location = "/";
+
       } else if (res.noRegister) {
         $("#invalid-email").show();
       } else if (res.wrongPassword) {

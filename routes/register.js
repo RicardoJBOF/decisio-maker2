@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
+    console.log(store.get('user'));
     res.render("register");
   });
 
@@ -36,13 +37,11 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const data = req.body;
-
     getUserByEmail(data.email).then((user) => {
       !user
         ? registerUser(data).then((user) => {
             const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
             res.json({ token, user });
-            // res.send({ redirect: "/" });
           })
         : res.send();
     });
