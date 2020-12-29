@@ -43,7 +43,7 @@ const surveyRouter  = require("./routes/survey");
 app.use("/", indexRouter(db));
 app.use("/login", loginRouter(db));
 app.use("/register", registerRouter(db));
-app.use("/admin/:id", adminRouter(db));
+app.use("/admin", adminRouter(db));
 app.use("/result", resultRouter(db));
 app.use("/survey", surveyRouter(db));
 
