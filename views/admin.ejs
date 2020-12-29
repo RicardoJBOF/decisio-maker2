@@ -24,13 +24,35 @@
 
   <body>
     <%- include('partials/_header') %>
+
+
     <main>
+      <div class="adjust-center">
 
-      <h1>Admin</h1>
+        <h1>Admin</h1>
 
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Questions</th>
+              <th scope="col">Results</th>
+            </tr>
+          </thead>
+        <tbody>
+          <% for(let i = 0; i < data.pollsid.length; i++) { %>
+            <tr>
+              <td> <%= data.pollsid[i] %> </td>
+              <td> <%= data.question[i] %> </td>
+              <td><a class="btn btn-primary" href="/result/<%= data.pollsid[i] %>"> Go to result</a></td>
+            </tr>
+          <% } %>
+        </tbody>
+
+      </div>
     </main>
 
-    <%- include('partials/_header') %>
+    <%- include('partials/_footer') %>
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>

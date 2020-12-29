@@ -18,9 +18,13 @@ $(document).ready(function () {
         data: data,
         async: false,
       }).done((res) => {
-        !res
-          ? $("#create-confirmation").show()
-          : (window.location = res.redirect);
+        if (res.token) {
+          sessionStorage.setItem("token", res.token);
+          sessionStorage.setItem("user", res.user);
+          window.location = "/";
+        } else {
+          $("#create-confirmation").show();
+        }
       });
     }
   });
