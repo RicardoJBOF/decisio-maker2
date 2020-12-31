@@ -34,6 +34,7 @@ module.exports = (db) => {
     accessQuestionPerUser(id).then((data) => {
       const templateVars = {
         data,
+        user: req.session.user_id
       };
       console.log(templateVars);
       res.render("admin", templateVars);

@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -30,6 +31,10 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1']
+}));
 
 
 const indexRouter = require("./routes/index");
@@ -38,6 +43,7 @@ const registerRouter = require("./routes/register");
 const adminRouter = require("./routes/admin");
 const resultRouter  = require("./routes/result");
 const surveyRouter  = require("./routes/survey");
+const logoutRouter  = require("./routes/logout");
 
 
 app.use("/", indexRouter(db));
@@ -46,6 +52,7 @@ app.use("/register", registerRouter(db));
 app.use("/admin", adminRouter(db));
 app.use("/result", resultRouter(db));
 app.use("/survey", surveyRouter(db));
+app.use("/logout", logoutRouter(db));
 
 
 app.listen(PORT, () => {
