@@ -43,6 +43,7 @@ const registerRouter = require("./routes/register");
 const adminRouter = require("./routes/admin");
 const resultRouter  = require("./routes/result");
 const surveyRouter  = require("./routes/survey");
+const logoutRouter  = require("./routes/logout");
 
 
 app.use("/", indexRouter(db));
@@ -51,6 +52,7 @@ app.use("/register", registerRouter(db));
 app.use("/admin", adminRouter(db));
 app.use("/result", resultRouter(db));
 app.use("/survey", surveyRouter(db));
+app.use("/logout", logoutRouter(db));
 
 
 app.listen(PORT, () => {

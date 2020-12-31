@@ -13,7 +13,9 @@
     <%} else {%>
       <div class="right-side-navbar">
         <a class="nav-admin btn btn-light" href="/admin">Admin</a>
-        <a class="nav-admin btn btn-light" href="/admin">Admin</a>
+        <form action="/logout" method="POST">
+          <button class="nav-admin btn btn-danger">Logout</button>
+        </form>
       </div>
 
     <%}%>
