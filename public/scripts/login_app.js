@@ -14,11 +14,8 @@ $(document).ready(function () {
       data: data,
       async: false,
     }).done((res) => {
-      if (res.token) {
-        sessionStorage.setItem("token", res.token);
-        sessionStorage.setItem("user", res.user);
+      if (res.user) {
         window.location = "/";
-
       } else if (res.noRegister) {
         $("#invalid-email").show();
       } else if (res.wrongPassword) {

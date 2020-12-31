@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 module.exports = (db) => {
+
   router.get("/", (req, res) => {
     res.render("login");
   });
@@ -31,8 +31,8 @@ module.exports = (db) => {
         if (!bcrypt.compareSync(data.password, user.password)) {
           res.send({ wrongPassword: "wrongPassword" });
         } else {
-          const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
-          res.json({ token, user });
+          req.session.user_id = user.id;
+          res.json({ user });
         }
       }
     });
