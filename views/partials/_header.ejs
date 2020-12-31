@@ -1,23 +1,23 @@
 <header>
   <nav>
     <div class="left-side-navbar">
-      <a href="/"><h1>Decider</h1></a>
+      <a href="/"><h1>Decider 2</h1></a>
     </div>
 
     <% if(!user) {%>
+
       <div class="right-side-navbar">
         <a class="nav-login btn btn-light" href="login">Login</a>
         <a class="nav-register btn btn-light" href="register">Register</a>
       </div>
 
     <%} else {%>
+
       <div class="right-side-navbar">
         <a class="nav-admin btn btn-light" href="/admin/<%= user %>">Admin</a>
-
         <form action="/logout" method="POST">
           <button class="nav-admin btn btn-danger">Logout</button>
         </form>
-
       </div>
 
     <%}%>
