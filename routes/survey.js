@@ -53,7 +53,10 @@ module.exports = (db) => {
         ${info.join(",")}`
     )
       .then((resp) => {
-        res.render("voted");
+        const templateVars = {
+          user: req.session.user_id,
+        }
+        res.render("voted", templateVars);
       })
       .catch((err) => {
         console.log(err);
