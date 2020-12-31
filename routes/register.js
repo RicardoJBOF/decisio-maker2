@@ -4,10 +4,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    const templateVars = {
-      user: req.session.user_id
-    };
-    res.render("register", templateVars);
+    res.render("register");
   });
 
   const getUserByEmail = (email) => {
