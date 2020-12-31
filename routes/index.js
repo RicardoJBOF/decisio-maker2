@@ -13,10 +13,10 @@ module.exports = (db) => {
   //INSERT QUESTION ON DATABASE AFTER SENDING POLL (INDEX.HTML)
   const insertQuestion = (data) => {
       const query = {
-        text: `INSERT INTO polls (name)
+        text: `INSERT INTO polls (name, creator_id)
         VALUES
-        ($1) RETURNING *;`,
-        values: [data.question]
+        ($1, $2) RETURNING *;`,
+        values: [data.question, data.user]
       }
       return db.query(query)
       .then(res => res.rows[0].id)
@@ -43,6 +43,7 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const data = req.body;
+    data.user = req.session.user_id;
     insertQuestion(data)
     .then(id => insertOptions(data, id))
     .then(id => {
