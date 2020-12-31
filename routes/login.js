@@ -5,7 +5,10 @@ const bcrypt = require("bcrypt");
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("login");
+    const templateVars = {
+      user: req.session.user_id
+    };
+    res.render("login", templateVars);
   });
 
   const getUserByEmail = (email) => {

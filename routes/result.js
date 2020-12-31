@@ -49,7 +49,8 @@ module.exports = (db) => {
     const id = req.params;
     accessData(id).then( data => {
       const templateVars = {
-        data
+        data,
+        user: req.session.user_id
       };
       res.render("result", templateVars);
     });

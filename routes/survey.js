@@ -31,6 +31,7 @@ module.exports = (db) => {
     const id = req.params;
     accessQuestion(id).then((data) => {
       const templateVars = {
+        user: req.session.user_id,
         data
       }
       res.render("survey", templateVars);

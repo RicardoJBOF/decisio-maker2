@@ -4,7 +4,10 @@ const router = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("index");
+    const templateVars = {
+      user: req.session.user_id
+    };
+    res.render("index", templateVars );
   });
 
   //INSERT QUESTION ON DATABASE AFTER SENDING POLL (INDEX.HTML)
