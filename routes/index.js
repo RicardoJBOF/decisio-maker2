@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const mailgun = require("mailgun-js");
+const mailgun = require("mailgun.js");
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY,
+});
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -48,34 +52,28 @@ module.exports = (db) => {
   };
 
   // SEND EMAIL TO USER
-  const sendLinks = function (info) {
-    const domain  = process.env.MG_DOMAIN;
-    const mg =  ({ apiKey: process.env.MG_KEY, domain: domain });
-    const data = {
-      from: "Decider2 <email@emailcom>",
-      to: "ricardo.jbof@hotmail.com",
-      subject: "Decider 2",
+  const sendLinks = function (info, email) {
+    mg.messages.create(process.env.MAILGUN_DOMAIN, {
+      from: "Decider 2 <email@decider2.com>",
+      to: [email],
+      subject: "Decider 2 - Links",
       text: info,
-    };
-    mg.messages().send(data, function (error, body) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(body);
-    });
+    })
+    .then(msg => console.log(msg))
+    .catch(err => console.log(err));
   };
 
   router.post("/", (req, res) => {
     const data = req.body;
     data.user = req.session.user_id;
-    console.log("req.session---->", req.session)
+    const email = req.session.user_email
 
     insertQuestion(data)
       .then((id) => insertOptions(data, id))
       .then((id) => {
         sendLinks(`
         Admin link: http://localhost:8080/result/${id}
-        Share link http://localhost:8080/survey/${id}`);
+        Share link http://localhost:8080/survey/${id}`, email);
         res.send({ response: id });
       })
       .catch((err) => err);
