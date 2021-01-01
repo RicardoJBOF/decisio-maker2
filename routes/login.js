@@ -32,6 +32,7 @@ module.exports = (db) => {
           res.send({ wrongPassword: "wrongPassword" });
         } else {
           req.session.user_id = user.id;
+          req.session.user_email = user.email;
           res.json({ user });
         }
       }

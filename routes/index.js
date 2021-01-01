@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const mailgun = require("mailgun.js");
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY,
+});
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -46,12 +51,29 @@ module.exports = (db) => {
     }
   };
 
+  // SEND EMAIL TO USER
+  const sendLinks = function (info, email) {
+    mg.messages.create(process.env.MAILGUN_DOMAIN, {
+      from: "Decider 2 <email@decider2.com>",
+      to: [email],
+      subject: "Decider 2 - Links",
+      text: info,
+    })
+    .then(msg => console.log(msg))
+    .catch(err => console.log(err));
+  };
+
   router.post("/", (req, res) => {
     const data = req.body;
     data.user = req.session.user_id;
+    const email = req.session.user_email
+
     insertQuestion(data)
       .then((id) => insertOptions(data, id))
       .then((id) => {
+        sendLinks(`
+        Admin link: http://localhost:8080/result/${id}
+        Share link http://localhost:8080/survey/${id}`, email);
         res.send({ response: id });
       })
       .catch((err) => err);

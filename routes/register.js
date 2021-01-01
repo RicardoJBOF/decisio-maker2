@@ -39,6 +39,7 @@ module.exports = (db) => {
       !user
         ? registerUser(data).then((user) => {
           req.session.user_id = user.id;
+          req.session.user_email = user.email;
           res.json({ user });
         })
         : res.send();
