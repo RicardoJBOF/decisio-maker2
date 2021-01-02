@@ -31,7 +31,7 @@
 
           <h1 class="form-group form-group-title"> <%= data.question %> </h1>
 
-          <p class="survey-comments container"> The current survey will use the Borda Count approach. It is a preferential, or ranked, voting system. Order your preference giving 1 to your first choice, 2 for the second one and etc.</p>
+          <p class="survey-comments"> The current survey will use the Borda Count approach. It is a preferential, or ranked, voting system. Order your preference giving 1 to your first choice, 2 for the second one and etc.</p>
 
 
           <form id="formSurvey" method="POST" action="/survey/<%= data.id %>">
@@ -41,14 +41,12 @@
               <input type="hidden" name="<%= i %>" value="<%= data.answersID[i] %>">
             <tr>
               <br>
+              <select class="select-class" name="select_name<%= data.id %>" id="select<%= data.id %>">
+                <% for(let i = 1; i <= data.answers.length; i++)  { %>
+                <option value="<%= i %>"> <%= i %> </option>
+                <% } %>
+              </select> -
               <%= data.answers[i] %>
-              <br>
-                <select class="select-class" name="select_name<%= data.id %>" id="select<%= data.id %>">
-                  <% for(let i = 1; i <= data.answers.length; i++)  { %>
-                  <option value="<%= i %>"> <%= i %> </option>
-                  <% } %>
-                </select>
-              <br>
             </tr>
 
             <% } %>

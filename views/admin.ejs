@@ -29,25 +29,25 @@
     <main>
       <div class="adjust-center">
 
-        <h1>Admin</h1>
+        <h1 class="admin-adjust">Admin</h1>
         <% if (data.pollsid) {%>
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Questions</th>
-                <th scope="col">Results</th>
-                <th scope="col">Survey Link</th>
+                <th class="col-table" scope="col">ID</th>
+                <th class="col-table" scope="col">Questions</th>
+                <th class="col-table" scope="col">Results</th>
+                <th class="col-table" scope="col">Survey Link</th>
               </tr>
             </thead>
 
             <tbody>
             <% for(let i = 0; i < data.pollsid.length; i++) { %>
               <tr>
-                <td> <%= data.pollsid[i] %> </td>
-                <td> <%= data.question[i] %> </td>
-                <td><a class="btn btn-primary" href="/result/<%= data.pollsid[i] %>"> Go to result</a></td>
-                <td><a href='http://localhost:8080/survey/<%= data.pollsid[i] %>'>http://localhost:8080/survey/<%= data.pollsid[i] %></a></td>
+                <td class="col-table"> <%= data.pollsid[i] %> </td>
+                <td class="col-table"> <%= data.question[i] %> </td>
+                <td class="col-table"><a class="btn btn-primary" href="/result/<%= data.pollsid[i] %>"> Check </a></td>
+                <td class="col-table"><a href='http://localhost:8080/survey/<%= data.pollsid[i] %>'>http://localhost:8080/survey/<%= data.pollsid[i] %></a></td>
               </tr>
             <% } %>
             </tbody>

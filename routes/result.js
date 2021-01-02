@@ -9,7 +9,7 @@ module.exports = (db) => {
 
     const query = {
       text: `
-      SELECT polls.name AS question, options.name as option, weight, options.id as questionID
+      SELECT polls.name AS question, options.name as option, weight, options.id as questionID, polls.creator_id as creatorsid
       FROM
       polls JOIN options ON polls.id = poll_id
       JOIN option_voters ON options.id = option_id
@@ -21,6 +21,7 @@ module.exports = (db) => {
       .then((res) => {
 
         data.question = res.rows[0].question;
+        data.creatorsid = res.rows[0].creatorsid;
         data.answers = {};
 
         for (let i = 0; i < res.rows.length; i++) {

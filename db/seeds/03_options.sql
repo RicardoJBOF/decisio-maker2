@@ -14,4 +14,10 @@ VALUES
   ('Hamilton to London', 3),
   ('Ottawa to Mississauga', 3),
   ('Montreal to Halifax', 3),
-  ('Toronto to Sao Paulo', 3);
+  ('Toronto to Sao Paulo', 3),
+  ('Trudeau', 5),
+  ('Scheer', 5),
+  ('Nintendo Switch', 6),
+  ('Pet', 6),
+  ('New forniture', 6);
+
