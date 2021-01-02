@@ -60,6 +60,7 @@ body {
     .adjust-center {
 
       margin: 0 2em;
+      padding: 0 32em;
 
       .form-group-title {
         textarea {
@@ -84,7 +85,7 @@ body {
 
       .survey-comments {
         text-align:justify;
-        padding: 0 21em 0 0 ;
+        font-style: italic;
       }
 
       .styling-final-answer {
