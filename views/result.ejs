@@ -30,12 +30,21 @@
 
         <% if(data.answers) { %>
 
-          <h1 class="form-group form-group-title"> <%= data.question %> </h1>
-          <p class="survey-comments container">
-          The more points, the more popular the answer is.</p>
+          <% if(data.creatorsid === user) { %>
 
-          <% for(const answer of data.answers) { %>
-            <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
+            <h1 class="form-group form-group-title"> <%= data.question %> </h1>
+            <p class="survey-comments">
+            The more points, the more popular the answer is.</p>
+
+            <% for(const answer of data.answers) { %>
+              <p class="styling-final-answer"><%= `${answer[0]} - ${answer[1]} points`%></p>
+            <% }  %>
+
+
+          <% } else { %>
+
+            <h1 class="form-group form-group-title"> You are not the creator of this survey. </h1>
+
           <% } %>
 
         <% } else { %>
@@ -48,7 +57,7 @@
 
     </main>
 
-    <%- include('partials/_header') %>
+    <%- include('partials/_footer') %>
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/result_app.js"></script>
