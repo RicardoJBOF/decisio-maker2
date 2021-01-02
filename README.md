@@ -2,14 +2,14 @@
 
 Decision Maker (Decider) 2 is an app in which registered users can create a poll with multiple choices. Visitors can vote in the survey ranking their preferences. Then, the results are classified using the Borda Count method.
 
-This is an upgraded version of Decision Maker, my midterm project from Lighthouse coding Bootcamp.
+This is an upgraded version of Decision Maker, my midterm project from the coding Bootcamp at Lighthouse Labs.
 
 ## Final Product
 
 ![Screenshot Create View 1](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Create-View1.png)
 ![Screenshot Create View 2](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Create-View2.png)
-![Screenshot Result View](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Result-View.png)
 ![Screenshot Survey View](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Survey-View.png)
+![Screenshot Result View](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Result-View.png)
 ![Screenshot Admin View](https://github.com/RicardoJBOF/decision-maker2/blob/master/docs/Admin-View.png)
 
 ## Dependencies
